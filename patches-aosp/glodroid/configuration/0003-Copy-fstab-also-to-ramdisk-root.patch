@@ -1,0 +1,38 @@
+From 268b99af012f7e8d8dfab8ff1970bc858fa6a229 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sun, 28 May 2023 18:08:21 +0200
+Subject: [PATCH 03/12] Copy fstab also to ramdisk root
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ platform/fstab/fstab.mk | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/platform/fstab/fstab.mk b/platform/fstab/fstab.mk
+index 554b121..0a92070 100644
+--- a/platform/fstab/fstab.mk
++++ b/platform/fstab/fstab.mk
+@@ -7,10 +7,11 @@ LOCAL_PATH := $(call my-dir)
+ FSTAB_RAW := $(LOCAL_PATH)/fstab.cpp
+ RECOVERY_FSTAB := $(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.$(TARGET_PRODUCT)
+ VENDOR_FSTAB := $(TARGET_OUT_VENDOR)/etc/fstab.$(TARGET_PRODUCT)
++RAMDISK_FSTAB := $(TARGET_RAMDISK_OUT)/fstab.$(TARGET_PRODUCT)
+ 
+ TARGET_RECOVERY_FSTAB := $(RECOVERY_FSTAB)
+ 
+-$(VENDOR_FSTAB) $(RECOVERY_FSTAB): $(FSTAB_RAW)
++$(VENDOR_FSTAB) $(RECOVERY_FSTAB) $(RAMDISK_FSTAB): $(FSTAB_RAW)
+ 	$(CLANG) -E -P -Wno-invalid-pp-token $< -o $@ \
+ 	    -Dplatform_$(PRODUCT_BOARD_PLATFORM) \
+ 	    -Ddevice_$(PRODUCT_DEVICE)
+@@ -25,6 +26,6 @@ LOCAL_MODULE := fstab
+ 
+ LOCAL_PROPRIETARY_MODULE := true
+ LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/etc/
+-LOCAL_PREBUILT_MODULE_FILE := $(VENDOR_FSTAB) $(RECOVERY_FSTAB)
++LOCAL_PREBUILT_MODULE_FILE := $(VENDOR_FSTAB) $(RECOVERY_FSTAB) $(RAMDISK_FSTAB)
+ 
+ include $(BUILD_EXECUTABLE)
+-- 
+2.40.1
+

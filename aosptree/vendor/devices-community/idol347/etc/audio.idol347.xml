@@ -1,0 +1,86 @@
+<audiohal>
+    <mixer name="alcatelidol3">
+        <init>
+            <!-- from platforms/msm8916/qdsp6.conf & qdsp6-components.conf, for idol3 -->
+            <ctl name="SEC_MI2S_RX Audio Mixer MultiMedia1" val="1" />
+            <ctl name="MultiMedia2 Mixer TERT_MI2S_TX" val="1" />
+            <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia3" val="1" />
+            <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia4" val="1" />
+            <ctl name="QUAT_MI2S_RX Voice Mixer CS-Voice" val="1" />
+            <ctl name="CS-Voice Capture Mixer TERT_MI2S_TX" val="1" />
+            <!-- let mic on for now -->
+            <ctl name="DEC1 MUX" val="ADC1" />
+            <ctl name="CIC1 MUX" val="AMIC" />
+            <ctl name="ADC1 Volume" val="8" />
+        </init>
+    </mixer>
+
+    <device name="speaker">
+        <path name="on">
+            <!-- from idol3 UCM -->
+            <ctl name="Speaker Top Amp Input" val="Left" />
+            <ctl name="Speaker Bottom Amp Input" val="Right" />
+            <ctl name="Speaker Top Mode" val="Speaker" />
+            <ctl name="Speaker Bottom Mode" val="Speaker" />
+            <ctl name="Speaker Top Switch" val="1" />
+            <ctl name="Speaker Bottom Switch" val="1" />
+        </path>
+        <path name="off">
+            <ctl name="Speaker Top Switch" val="0" />
+            <ctl name="Speaker Bottom Switch" val="0" />
+        </path>
+    </device>
+
+    <device name="earpiece">
+        <path name="on">
+            <!-- from idol3 UCM -->
+            <ctl name="Speaker Top Amp Input" val="Left" />
+            <ctl name="Speaker Top Mode" val="Receiver" />
+            <ctl name="Speaker Top Switch" val="1" />
+            <ctl name="Speaker Bottom Switch" val="0" />
+        </path>
+        <path name="off">
+            <ctl name="Speaker Top Switch" val="0" />
+        </path>
+    </device>
+
+    <device name="headphone">
+        <path name="on">
+            <!-- from idol3 UCM -->
+            <ctl name="HPL Mixer LDACL Switch" val="1" />
+            <ctl name="HPR Mixer RDACR Switch" val="1" />
+        </path>
+        <path name="off">
+            <ctl name="HPL Mixer LDACL Switch" val="0" />
+            <ctl name="HPR Mixer RDACR Switch" val="0" />
+        </path>
+    </device>
+
+    <device name="mic">
+       <!-- from ucm2/codecs/msm8916-wcd/PrimaryMic.conf -->
+       <!-- workaround mic not being enabled on calls by letting it on
+        <path name="on">
+            <ctl name="DEC1 MUX" val="ADC1" />
+            <ctl name="CIC1 MUX" val="AMIC" />
+            <ctl name="ADC1 Volume" val="8" />
+        </path>
+        <path name="off">
+            <ctl name="DEC1 MUX" val="ZERO" />
+            <ctl name="ADC1 Volume" val="0" />
+        </path>
+        -->
+    </device>
+
+    <!-- required for receiving AUDIO_MODE_IN_CALL events in adev_set_mode() -->
+    <device name="voice" />
+
+    <!-- idol3 headphones, PlaybackPCM "hw:${CardId},0" -->
+    <stream type="pcm" dir="out" cardname="alcatelidol3" device="0" />
+
+    <!-- idol3 speakers, PlaybackPCM "hw:${CardId},2" -->
+    <stream type="pcm" dir="out" cardname="alcatelidol3" device="2" />
+
+    <!-- idol3 microphone, WcdCapturePCM "hw:${CardId},1" -->
+    <stream type="pcm" dir="in" cardname="alcatelidol3" device="1" />
+
+</audiohal>

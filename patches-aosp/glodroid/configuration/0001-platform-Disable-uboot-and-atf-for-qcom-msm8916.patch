@@ -1,0 +1,31 @@
+From 95bc63246776e61682b86a7da421dda1f0b74e7c Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Fri, 26 May 2023 15:18:49 +0200
+Subject: [PATCH 01/12] platform: Disable uboot and atf for qcom-msm8916
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ platform/Android.mk | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/platform/Android.mk b/platform/Android.mk
+index e323ecf..f1b6a20 100644
+--- a/platform/Android.mk
++++ b/platform/Android.mk
+@@ -48,9 +48,13 @@ endif
+ 
+ include $(PLATFORM_PATH)/fstab/fstab.mk
+ include $(PLATFORM_PATH)/kernel/kernel.mk
++ifneq ($(PRODUCT_BOARD_PLATFORM),qcom_msm8916)
+ include $(PLATFORM_PATH)/uboot/uboot.mk
++endif
+ include $(PLATFORM_PATH)/tools/tools.mk
++ifneq ($(PRODUCT_BOARD_PLATFORM),qcom_msm8916)
+ include $(PLATFORM_PATH)/atf.mk
++endif
+ 
+ ifeq ($(PRODUCT_BOARD_PLATFORM),sunxi)
+ ifneq ($(CRUST_FIRMWARE_DEFCONFIG),)
+-- 
+2.40.1
+

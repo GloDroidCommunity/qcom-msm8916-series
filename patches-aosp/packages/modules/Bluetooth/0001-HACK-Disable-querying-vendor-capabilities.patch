@@ -1,0 +1,39 @@
+From d0881565952ced40bcc3bb6f9b653e87857bf831 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sun, 16 Apr 2023 10:02:06 +0200
+Subject: [PATCH] HACK: Disable querying vendor capabilities
+
+Disable querying vendor capabilities to workaround this assert
+waiting_command_ == op_code' failed - Waiting for 0xfd57 (LE_ADV_FILTER), got 0x157 (Unknown OpCode: 343)
+https://android.googlesource.com/platform/packages/modules/Bluetooth/+/fe233305472ed7127a6a34a20c46f2cc1b5d4977
+
+Change-Id: I4d22114a5bfa70d437cd6326a2dd985995ecde75
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ system/gd/hci/controller.cc | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/system/gd/hci/controller.cc b/system/gd/hci/controller.cc
+index 3c8b69ddc7..fb90a42765 100644
+--- a/system/gd/hci/controller.cc
++++ b/system/gd/hci/controller.cc
+@@ -154,8 +154,14 @@ struct Controller::impl {
+           handler->BindOnceOn(this, &Controller::impl::le_set_host_feature_handler));
+     }
+ 
+-    hci_->EnqueueCommand(LeGetVendorCapabilitiesBuilder::Create(),
+-                         handler->BindOnceOn(this, &Controller::impl::le_get_vendor_capabilities_handler));
++    /*
++     * Disable querying vendor capabilities to workaround this assert
++     * waiting_command_ == op_code' failed - Waiting for 0xfd57 (LE_ADV_FILTER), got 0x157 (Unknown OpCode: 343)
++     * https://android.googlesource.com/platform/packages/modules/Bluetooth/+/fe233305472ed7127a6a34a20c46f2cc1b5d4977
++     */
++    //hci_->EnqueueCommand(LeGetVendorCapabilitiesBuilder::Create(),
++    //                     handler->BindOnceOn(this, &Controller::impl::le_get_vendor_capabilities_handler));
++    vendor_capabilities_.is_supported_ = 0x00;
+ 
+     // We only need to synchronize the last read. Make BD_ADDR to be the last one.
+     std::promise<void> promise;
+-- 
+2.40.1
+

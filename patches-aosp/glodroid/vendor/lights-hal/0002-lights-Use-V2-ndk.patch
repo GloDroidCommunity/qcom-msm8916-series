@@ -1,0 +1,26 @@
+From 9d30db016eb522fa62fa11a6140ba0a92e3bd340 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 24 Jun 2023 09:06:16 +0200
+Subject: [PATCH 2/7] lights: Use V2 ndk
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ Android.bp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Android.bp b/Android.bp
+index 79d8191..d149b3f 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -7,7 +7,7 @@ cc_binary {
+     shared_libs: [
+         "libbase",
+         "libbinder_ndk",
+-        "android.hardware.light-V1-ndk",
++        "android.hardware.light-V2-ndk",
+     ],
+     srcs: [
+         "Lights.cpp",
+-- 
+2.40.1
+

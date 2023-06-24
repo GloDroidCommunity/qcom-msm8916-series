@@ -1,0 +1,28 @@
+From 57461097b337d7c41f0387ec6f631f1597dfadc9 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 3 Jun 2023 10:54:01 +0200
+Subject: [PATCH 10/12] minigbm: Disable compression for qcom-msm8916
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ ...roid.hardware.graphics.allocator@4.0-service.minigbm_gd.rc | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/common/graphics/android.hardware.graphics.allocator@4.0-service.minigbm_gd.rc b/common/graphics/android.hardware.graphics.allocator@4.0-service.minigbm_gd.rc
+index 34a6e69..25bc13e 100644
+--- a/common/graphics/android.hardware.graphics.allocator@4.0-service.minigbm_gd.rc
++++ b/common/graphics/android.hardware.graphics.allocator@4.0-service.minigbm_gd.rc
+@@ -14,6 +14,10 @@
+ # limitations under the License.
+ #
+ 
++# qcom-msm8916 doesn't support compression (for now, at least)
++on init
++    export MINIGBM_DEBUG nocompression
++
+ service vendor.graphics.allocator-4-0 /vendor/bin/hw/android.hardware.graphics.allocator@4.0-service.minigbm_gd
+     interface android.hardware.graphics.allocator@4.0::IAllocator default
+     class hal animation
+-- 
+2.40.1
+

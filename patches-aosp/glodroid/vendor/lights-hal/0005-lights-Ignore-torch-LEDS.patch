@@ -1,0 +1,29 @@
+From 26171b56e4676826224a29276146313bdacfa976 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Fri, 23 Jun 2023 13:08:05 +0200
+Subject: [PATCH 5/7] lights: Ignore torch LEDS
+
+Skip creating lights for LEDs which name contain "torch".
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ Lights.cpp | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Lights.cpp b/Lights.cpp
+index d99c5dc..5c84018 100644
+--- a/Lights.cpp
++++ b/Lights.cpp
+@@ -226,6 +226,9 @@ Lights::Lights()
+         while (dirent *ent = readdir(leds)) {
+             if ((ent->d_type == DT_DIR && ent->d_name[0] != '.') || (ent->d_type == DT_LNK && strncmp("mmc", ent->d_name, 3))) {
+                 std::string ledPath = LEDS_DIR + "/" + ent->d_name;
++                std::string torch = std::string("torch");
++                if (ledPath.find(torch) != std::string::npos)
++                    continue;
+                 if (auto led = Led::createLed(
+                         // TODO: Also used for ATTENTION and BATTERY - register multiple instances?
+                         HwLight { .id = id++, .ordinal = ordinal++, .type = LightType::NOTIFICATIONS },
+-- 
+2.40.1
+

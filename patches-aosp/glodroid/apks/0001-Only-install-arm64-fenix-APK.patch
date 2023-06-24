@@ -1,0 +1,23 @@
+From cdbb2f20fe80da25201dd9b17da39914b0cd8894 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Fri, 26 May 2023 21:57:48 +0200
+Subject: [PATCH] Only install arm64 fenix APK
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ glodroid-apks.mk | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/glodroid-apks.mk b/glodroid-apks.mk
+index 4649eaf..7aef1ae 100644
+--- a/glodroid-apks.mk
++++ b/glodroid-apks.mk
+@@ -4,5 +4,4 @@ PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/fdroid.apk:$(TARGET_COPY_OUT_VENDOR)/etc/preinstall/fdroid.apk_all                   \
+     $(LOCAL_PATH)/shade-launcher3.apk:$(TARGET_COPY_OUT_VENDOR)/etc/preinstall/shade-launcher3.apk_all \
+     $(LOCAL_PATH)/skytube.apk:$(TARGET_COPY_OUT_VENDOR)/etc/preinstall/skytube.apk_all                 \
+-    $(LOCAL_PATH)/fenix-arm.apk:$(TARGET_COPY_OUT_VENDOR)/etc/preinstall/fenix.apk_arm                 \
+     $(LOCAL_PATH)/fenix-arm64.apk:$(TARGET_COPY_OUT_VENDOR)/etc/preinstall/fenix.apk_arm64             \
+-- 
+2.40.1
+

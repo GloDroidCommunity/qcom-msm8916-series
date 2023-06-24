@@ -1,0 +1,32 @@
+From db55b95fd0139bf91d499df8e0a7d5f3512872fb Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Mon, 29 May 2023 15:21:28 +0200
+Subject: [PATCH 07/12] modem: Reduce MM verbosity further, and wait boot
+ completion
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ common/modem/modem_manager.rc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/common/modem/modem_manager.rc b/common/modem/modem_manager.rc
+index bcf564e..3896d49 100644
+--- a/common/modem/modem_manager.rc
++++ b/common/modem/modem_manager.rc
+@@ -8,11 +8,11 @@ service dbus-1.0 /vendor/bin/dbus-daemon --system --nofork
+     user root
+     group root
+ 
+-service modemmanager /vendor/bin/ModemManager --debug
++service modemmanager /vendor/bin/ModemManager --log-level=INFO
+     user root
+     group root
+ 
+-on boot
++on property:sys.boot_completed=1
+     mkdir /mnt/var 0755 system system
+     mkdir /mnt/var/run 0755 system system
+     mkdir /mnt/var/run/dbus 0755 system system
+-- 
+2.40.1
+

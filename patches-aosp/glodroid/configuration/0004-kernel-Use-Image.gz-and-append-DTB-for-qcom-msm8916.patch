@@ -1,0 +1,26 @@
+From 226959417a28d722872c853fcce2a7f179910fc0 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 27 May 2023 10:46:06 +0200
+Subject: [PATCH 04/12] kernel: Use Image.gz and append DTB for qcom-msm8916
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ platform/tools/makefile_kernel.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/platform/tools/makefile_kernel.mk b/platform/tools/makefile_kernel.mk
+index ccdc39c..7cac1bd 100644
+--- a/platform/tools/makefile_kernel.mk
++++ b/platform/tools/makefile_kernel.mk
+@@ -54,7 +54,7 @@ $(INSTALL_TARGET): $(BUILD_TARGET)
+ 	@mv $(OUT_INSTALL_DIR)/modules/lib/modules/$${KERNELRELEASE} $(OUT_INSTALL_DIR)/modules/lib/modules/GloDroid
+ 
+ ifeq ($(TARGET_ARCH),arm64)
+-	@lz4c -f -c1 $(OUT_INSTALL_DIR)/vmlinuz $(OUT_INSTALL_DIR)/kernel &>>$@ || (cat $@.tmp && exit 1)
++	@cat $(OUT_BUILD_DIR)/arch/arm64/boot/Image.gz $(OUT_INSTALL_DIR)/dtbs/qcom/*-$(TARGET_PRODUCT).dtb > $(OUT_INSTALL_DIR)/kernel
+ else
+ 	@cp $(OUT_INSTALL_DIR)/vmlinuz $(OUT_INSTALL_DIR)/kernel
+ endif
+-- 
+2.40.1
+

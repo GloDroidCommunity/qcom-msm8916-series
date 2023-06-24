@@ -1,0 +1,84 @@
+From 95290efb272454689f0297dc734cdf29225c06ef Mon Sep 17 00:00:00 2001
+From: wei wang <wei.wang@amlogic.com>
+Date: Thu, 15 Sep 2022 13:40:11 +0800
+Subject: [PATCH 3/3] light: get correct light list by type [1/1]
+
+PD#SWPL-93700
+BUG:246879089
+
+Problem:
+light id is not equal to light type
+
+Solution:
+add light in light list by type
+
+Verify:
+Verify it on ohm
+
+Change-Id: I7023f817336bdfa51bbe8be0d2fdd70406081971
+Signed-off-by: wei wang <wei.wang@amlogic.com>
+---
+ .../android/server/lights/LightsService.java  | 21 +++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
+
+diff --git a/services/core/java/com/android/server/lights/LightsService.java b/services/core/java/com/android/server/lights/LightsService.java
+index 91f14de040fe..b3216598051d 100644
+--- a/services/core/java/com/android/server/lights/LightsService.java
++++ b/services/core/java/com/android/server/lights/LightsService.java
+@@ -56,7 +56,8 @@ public class LightsService extends SystemService {
+     static final String TAG = "LightsService";
+     static final boolean DEBUG = false;
+ 
+-    private final LightImpl[] mLightsByType = new LightImpl[LightsManager.LIGHT_ID_COUNT];
++    //private final LightImpl[] mLightsByType = new LightImpl[LightsManager.LIGHT_ID_COUNT];
++    private final Map<Integer, LightImpl> mLightsByType = new HashMap<>();
+     private final SparseArray<LightImpl> mLightsById = new SparseArray<>();
+ 
+     @Nullable
+@@ -465,10 +466,13 @@ public class LightsService extends SystemService {
+         }
+ 
+         for (int i = mLightsById.size() - 1; i >= 0; i--) {
+-            final int type = mLightsById.keyAt(i);
++            /*final int type = mLightsById.keyAt(i);
+             if (0 <= type && type < mLightsByType.length) {
+                 mLightsByType[type] = mLightsById.valueAt(i);
+-            }
++            }*/
++            LightImpl light = mLightsById.valueAt(i);
++            final int type = light.mHwLight.type;
++            mLightsByType.put(type, light);
+         }
+     }
+ 
+@@ -483,7 +487,7 @@ public class LightsService extends SystemService {
+     }
+ 
+     private void populateAvailableLightsFromHidl(Context context) {
+-        for (int i = 0; i < mLightsByType.length; i++) {
++        for (int i = 0; i < LightsManager.LIGHT_ID_COUNT; i++) {
+             HwLight hwLight = new HwLight();
+             hwLight.id = (byte) i;
+             hwLight.ordinal = 1;
+@@ -513,11 +517,16 @@ public class LightsService extends SystemService {
+     private final LightsManager mService = new LightsManager() {
+         @Override
+         public LogicalLight getLight(int lightType) {
+-            if (mLightsByType != null && 0 <= lightType && lightType < mLightsByType.length) {
++            /*if (mLightsByType != null && 0 <= lightType && lightType < mLightsByType.length) {
+                 return mLightsByType[lightType];
+             } else {
+                 return null;
+-            }
++            }*/
++            LightImpl light = mLightsByType.get(lightType);
++            if (light != null)
++                return light;
++            else
++                return null;
+         }
+     };
+ 
+-- 
+2.40.1
+

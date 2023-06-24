@@ -1,0 +1,83 @@
+/dev/sw_sync              0660   root       graphics
+
+# gpu
+/dev/dri/card0 0660 system graphics
+/dev/dri/renderD128 0666 system graphics
+
+# media.codec2
+/dev/ion 0664 system system
+
+# Input devices
+/dev/input/* 0660 system input
+
+# Backlights
+/sys/class/backlight/* brightness 0660 system system
+
+# Bluetooth
+/dev/rfkill 0660 bluetooth net_bt
+
+# Sensors
+/dev/iio:device* 0660 system system
+
+# FIXME: Wildcards in second part do not seem possible, need to add everything...
+/sys/bus/iio/devices/iio:device*  buffer/enable                  0644  system  system
+/sys/bus/iio/devices/iio:device*  trigger/current_trigger        0644  system  system
+
+# for iio in /sys/bus/iio/devices/iio\:device*; do cd $iio && find events -type f | awk '{print "/sys/bus/iio/devices/iio:device*", $1, "0644 system system"}'; done | sort -u
+/sys/bus/iio/devices/iio:device* events/in_accel_x_thresh_either_en 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_accel_x_thresh_either_period 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_accel_x_thresh_either_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_accel_y_thresh_either_en 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_accel_y_thresh_either_period 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_accel_y_thresh_either_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_accel_z_thresh_either_en 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_accel_z_thresh_either_period 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_accel_z_thresh_either_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_anglvel_roc_either_en 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_anglvel_roc_either_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_intensity0_thresh_either_en 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_intensity0_thresh_either_period 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_intensity0_thresh_falling_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_intensity0_thresh_rising_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_proximity_thresh_falling_en 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_proximity_thresh_falling_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_proximity_thresh_rising_en 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_proximity_thresh_rising_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_proximity0_thresh_either_en 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_proximity0_thresh_either_period 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_proximity0_thresh_falling_value 0644 system system
+/sys/bus/iio/devices/iio:device* events/in_proximity0_thresh_rising_value 0644 system system
+
+# TODO: in_%s_en
+
+# for iio in /sys/bus/iio/devices/iio\:device*; do cd $iio && find scan_elements -name '*_en' | awk '{print "/sys/bus/iio/devices/iio:device*", $1, "0644 system system"}'; done | sort -u
+/sys/bus/iio/devices/iio:device* scan_elements/in_accel_x_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_accel_y_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_accel_z_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_anglvel_x_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_anglvel_y_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_anglvel_z_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_magn_x_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_magn_y_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_magn_z_en 0644 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_timestamp_en 0644 system system
+
+# for iio in /sys/bus/iio/devices/iio\:device*; do cd $iio && find in_*sampling_frequency | awk '{print "/sys/bus/iio/devices/iio:device*", $1, "0644 system system"}'; done | sort -u
+/sys/bus/iio/devices/iio:device* in_accel_sampling_frequency 0644 system system
+/sys/bus/iio/devices/iio:device* in_anglvel_sampling_frequency 0644 system system
+
+# TODO: in_illuminance_calibscale, in_%s_calibbias
+
+/sys/bus/iio/devices/iio:device*  buffer/length                  0644  system  system
+
+# for iio in /sys/bus/iio/devices/iio\:device*; do cd $iio && find in_*scale | awk '{print "/sys/bus/iio/devices/iio:device*", $1, "0644 system system"}'; done | sort -u
+/sys/bus/iio/devices/iio:device* in_accel_scale 0644 system system
+/sys/bus/iio/devices/iio:device* in_anglvel_scale 0644 system system
+/sys/bus/iio/devices/iio:device* in_illuminance_scale 0644 system system
+/sys/bus/iio/devices/iio:device* in_intensity0_calibscale 0644 system system
+/sys/bus/iio/devices/iio:device* in_magn_x_scale 0644 system system
+/sys/bus/iio/devices/iio:device* in_magn_y_scale 0644 system system
+/sys/bus/iio/devices/iio:device* in_magn_z_scale 0644 system system
+/sys/bus/iio/devices/iio:device* in_proximity_scale 0644 system system
+/sys/bus/iio/devices/iio:device* in_proximity0_calibscale 0644 system system
+/sys/bus/iio/devices/iio:device* in_temp_scale 0644 system system

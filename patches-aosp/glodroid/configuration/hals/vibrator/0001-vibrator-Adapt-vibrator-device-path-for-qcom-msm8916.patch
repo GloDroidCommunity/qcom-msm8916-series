@@ -1,0 +1,31 @@
+From 41176adfa8a7e3efc6a61a7802e57523c14ceff2 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 24 Jun 2023 16:18:45 +0200
+Subject: [PATCH] vibrator: Adapt vibrator device path for qcom-msm8916
+
+The PM8916 vibrator device commonly found with MSM8916 is at
+/sys/devices/platform/soc@0/200f000.spmi/spmi-0/0-01/200f000.spmi:pmic@1:vibrator@c000/input
+instead of just
+/sys/devices/platform/vibrator/input
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ hals/vibrator/main.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/hals/vibrator/main.cpp b/hals/vibrator/main.cpp
+index 5f95981..9417b9a 100644
+--- a/hals/vibrator/main.cpp
++++ b/hals/vibrator/main.cpp
+@@ -25,7 +25,7 @@ using aidl::android::hardware::vibrator::FFDeviceBase;
+ using aidl::android::hardware::vibrator::FFDeviceDummy;
+ using aidl::android::hardware::vibrator::Vibrator;
+ 
+-static const char* INPUT_PATH = "/sys/devices/platform/vibrator/input";
++static const char* INPUT_PATH = "/sys/devices/platform/soc@0/200f000.spmi/spmi-0/0-01/200f000.spmi:pmic@1:vibrator@c000/input";
+ 
+ int main() {
+     ABinderProcess_setThreadPoolMaxThreadCount(0);
+-- 
+2.40.1
+

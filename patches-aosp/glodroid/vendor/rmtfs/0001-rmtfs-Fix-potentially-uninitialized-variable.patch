@@ -1,0 +1,26 @@
+From 6a72a387f92c2991042f0dbba0a624418ac303d8 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Mon, 29 May 2023 10:36:33 +0200
+Subject: [PATCH 1/2] rmtfs: Fix potentially uninitialized variable
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ rmtfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rmtfs.c b/rmtfs.c
+index ffca070..0934eda 100644
+--- a/rmtfs.c
++++ b/rmtfs.c
+@@ -155,7 +155,7 @@ static void rmtfs_iovec(int sock, struct qrtr_packet *pkt)
+ 	uint32_t caller_id = 0;
+ 	size_t num_entries = 0;
+ 	off_t sector_base;
+-	uint8_t is_write;
++	uint8_t is_write = 0;
+ 	off_t phys_base;
+ 	uint8_t force = 0;
+ 	unsigned txn;
+-- 
+2.40.1
+

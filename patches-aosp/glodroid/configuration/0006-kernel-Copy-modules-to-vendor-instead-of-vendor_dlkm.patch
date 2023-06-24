@@ -1,0 +1,26 @@
+From ae52af9b7497317dd7ab9e42dcba577827786be6 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 27 May 2023 20:23:37 +0200
+Subject: [PATCH 06/12] kernel: Copy modules to vendor instead of vendor_dlkm
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ platform/kernel/kernel.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/platform/kernel/kernel.mk b/platform/kernel/kernel.mk
+index b44808c..a1cb964 100644
+--- a/platform/kernel/kernel.mk
++++ b/platform/kernel/kernel.mk
+@@ -61,7 +61,7 @@ $(KERNEL_TARGET): $(KERNEL_DEFCONFIG) $(KERNEL_FRAGMENTS) $(KERNEL_SRC_FILES) $(
+ 
+ # Post processing:
+ 
+-TARGET_VENDOR_MODULES   := $(TARGET_OUT_VENDOR_DLKM)/lib/modules
++TARGET_VENDOR_MODULES   := $(TARGET_OUT_VENDOR)/lib/modules
+ ANDROID_DTS_OVERLAY	?= $(LOCAL_PATH)/empty.dts
+ 
+ ANDROID_DTBO		:= $(PRODUCT_OUT)/obj/GLODROID/DTBO/fstab-android-sdcard.dtbo
+-- 
+2.40.1
+

@@ -1,0 +1,113 @@
+<audiohal>
+    <mixer card="0">
+        <pre_init>
+            <!-- A list of ctl elements - see description of init element -->
+            <!-- <ctl name="DSP1 Preload Switch" val="1" /> -->
+        </pre_init>
+	<init>
+            <ctl name="ADC1 Volume" val="8" />
+            <ctl name="ADC2 Volume" val="8" />
+            <ctl name="ADC3 Volume" val="8" />
+	    <ctl name="IIR1 INP1 Volume" val="40" />
+	    <ctl name="IIR1 INP2 Volume" val="40" />
+	    <ctl name="IIR1 INP3 Volume" val="40" />
+	    <ctl name="IIR1 INP4 Volume" val="40" />
+	    <ctl name="IIR2 INP1 Volume" val="40" />
+	    <ctl name="IIR2 INP2 Volume" val="40" />
+	    <ctl name="IIR2 INP3 Volume" val="40" />
+	    <ctl name="IIR2 INP4 Volume" val="40" />
+	</init>
+    </mixer>
+
+    <device name="speaker">
+        <path name="on">
+	    <ctl name="Amp Input" val="Left" />
+            <ctl name="RX1 MIX1 INP1" val="RX1" />
+	    <ctl name="RDAC2 MUX" val="RX1" />
+	    <ctl name="EAR_S" val="Switch" />
+	    <ctl name="RX1 Digital Volume" val="128" />
+        </path>
+        <path name="off">
+	    <ctl name="RX1 Digital Volume" val="0" />
+	    <ctl name="EAR_S" val="ZERO" />
+            <ctl name="RX1 MIX1 INP1" val="ZERO" />
+        </path>
+        <path name="pcm_out_en">
+        </path>
+        <path name="pcm_out_dis">
+        </path>
+    </device>
+
+    <device name="earpiece">
+        <path name="on">
+            <ctl name="RX1 MIX1 INP1" val="RX1" />
+	    <ctl name="RDAC2 MUX" val="RX1" />
+	    <ctl name="EAR_S" val="Switch" />
+	    <ctl name="RX1 Digital Volume" val="128" />
+        </path>
+	<path name="off">
+	    <ctl name="RX1 Digital Volume" val="0" />
+	    <ctl name="EAR_S" val="ZERO" />
+            <ctl name="RX1 MIX1 INP1" val="ZERO" />
+        </path>
+        <path name="pcm_out_en">
+        </path>
+        <path name="pcm_out_dis">
+        </path>
+    </device>
+
+    <device name="mic">
+        <path name="on">
+	    <!-- from ucm2/codecs/msm8916-wcd/PrimaryMic.conf -->
+	    <ctl name="DEC1 MUX" val="ADC1" />
+	    <ctl name="CIC1 MUX" val="AMIC" />
+	    <ctl name="ADC1 Volume" val="8" />
+        </path>
+        <path name="off">
+            <ctl name="DEC1 MUX" val="ZERO" />
+            <ctl name="ADC1 Volume" val="0" />
+        </path>
+    </device>
+
+    <device name="headphone">
+	<!-- from ucm2/codecs/msm8916-wcd/Headphones.conf -->
+        <path name="on">
+            <ctl name="RX1 MIX1 INP1" val="RX1" />
+	    <ctl name="RX2 MIX1 INP1" val="RX2" />
+            <ctl name="RDAC2 MUX" val="RX2" />
+            <ctl name="HPHL" val="Switch" />
+	    <ctl name="HPHR" val="Switch" />
+	    <ctl name="EAR_S" val="ZERO" />
+	    <ctl name="RX1 Digital Volume" val="128" />
+	    <ctl name="RX2 Digital Volume" val="128" />
+        </path>
+        <path name="off">
+	    <ctl name="RX1 Digital Volume" val="0" />
+	    <ctl name="RX2 Digital Volume" val="0" />
+            <ctl name="HPHL" val="ZERO" />
+	    <ctl name="HPHR" val="ZERO" />
+            <ctl name="RX1 MIX1 INP1" val="ZERO" />
+	    <ctl name="RX2 MIX1 INP1" val="ZERO" />
+        </path>
+        <path name="pcm_out_en">
+        </path>
+        <path name="pcm_out_dis">
+        </path>
+    </device>
+
+    <!-- earpiece + headphones, PlaybackPCM "hw:${CardId},0" -->
+    <stream type="pcm" dir="out" card="0" device="0" rate="48000" period_count="2" period_size="6144">
+        <enable path="pcm_out_en"/>
+        <disable path="pcm_out_dis"/>
+    </stream>
+
+    <!-- speaker, PlaybackPCM "hw:${CardId},2" -->
+    <stream type="pcm" dir="out" card="0" device="2" rate="48000" period_count="2" period_size="6144">
+        <enable path="pcm_out_en"/>
+	<disable path="pcm_out_dis"/>
+    </stream>
+
+    <stream type="pcm" dir="in" card="0" device="1" rate="48000">
+    </stream>
+
+</audiohal>

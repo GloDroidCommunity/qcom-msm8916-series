@@ -1,0 +1,126 @@
+From 4492904d93cbdae049752577f22f5e4a546ec7c3 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Wed, 15 Feb 2023 20:20:27 +0100
+Subject: [PATCH] Add minimal q6voiced implementation to enable voice audio
+ path
+
+Add check for AUDIO_MODE_IN_CALL in adev_set_mode()
+and hook a minimal implementation of q6voiced [1]
+to enable voice audio path when in-call.
+
+Note that adding <device name="voice" /> in audio XML
+seems to be required so that adev_set_mode() receives
+AUDIO_MODE_IN_CALL mode setting.
+
+[1] https://gitlab.com/postmarketOS/q6voiced/
+
+Suggested-by: Stephan Gerhold <stephan@gerhold.net>
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ audio/Android.mk |  3 ++-
+ audio/audio_hw.c |  7 +++++++
+ audio/q6voiced.c | 53 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 62 insertions(+), 1 deletion(-)
+ create mode 100644 audio/q6voiced.c
+
+diff --git a/audio/Android.mk b/audio/Android.mk
+index e4636a7..7f69741 100644
+--- a/audio/Android.mk
++++ b/audio/Android.mk
+@@ -46,7 +46,8 @@ LOCAL_C_INCLUDES += \
+ 	$(call include-path-for, audio-utils)
+ 
+ LOCAL_SRC_FILES := \
+-	audio_hw.c
++	audio_hw.c \
++	q6voiced.c
+ 
+ LOCAL_STATIC_LIBRARIES := \
+ 	libmedia_helper
+diff --git a/audio/audio_hw.c b/audio/audio_hw.c
+index 59d6dcb..4e60623 100644
+--- a/audio/audio_hw.c
++++ b/audio/audio_hw.c
+@@ -83,6 +83,9 @@
+ #define ETC_PATH "/system/etc"
+ #endif
+ 
++extern void q6voiced_open();
++extern void q6voiced_close();
++
+ #ifdef TINYHAL_COMPRESS_PLAYBACK
+ enum async_mode {
+     ASYNC_NONE,
+@@ -2262,6 +2265,10 @@ static int adev_set_master_volume(struct audio_hw_device *dev, float volume)
+ 
+ static int adev_set_mode(struct audio_hw_device *dev, audio_mode_t mode)
+ {
++    if (mode == AUDIO_MODE_IN_CALL)
++        q6voiced_open();
++    else
++        q6voiced_close();
+     return 0;
+ }
+ 
+diff --git a/audio/q6voiced.c b/audio/q6voiced.c
+new file mode 100644
+index 0000000..8897d87
+--- /dev/null
++++ b/audio/q6voiced.c
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: MIT
++#include <stdbool.h>
++#include <stdio.h>
++#include <tinyalsa/asoundlib.h>
++
++#include <cutils/log.h>
++
++/* Note: These parameters have little relevance (no audio data written) */
++struct pcm_config pcm_config_voice_call = {
++	.channels	= 1,
++	.rate		= 8000,
++	.period_size	= 160,
++	.period_count	= 2,
++	.format		= PCM_FORMAT_S16_LE,
++};
++
++struct q6voiced {
++	//unsigned int card, device;
++	struct pcm *tx, *rx;
++};
++
++static struct q6voiced v = { 0 };
++
++void q6voiced_open(/* struct q6voiced *v */)
++{
++	if (v.tx)
++		return; /* Already active */
++
++	/*
++	 * Opening the PCM devices starts the stream.
++	 * This should be replaced by a codec2codec link probably.
++	 */
++	v.tx = pcm_open(/* v->card */ 0, /* v->device */ 4, PCM_IN, &pcm_config_voice_call);
++	v.rx = pcm_open(/* v->card */ 0, /* v->device */ 4, PCM_OUT, &pcm_config_voice_call);
++	if (!pcm_is_ready(v.tx) || pcm_prepare(v.tx))
++		ALOGE("Failed to open tx");
++	if (!pcm_is_ready(v.rx) || pcm_prepare(v.rx))
++		ALOGE("Failed to open rx");
++
++	ALOGI("q6voice PCM devices were opened.");
++}
++
++void q6voiced_close(/* struct q6voiced *v */)
++{
++	if (!v.tx)
++		return; /* Not active */
++
++	pcm_close(v.rx);
++	pcm_close(v.tx);
++	v.rx = v.tx = NULL;
++
++	ALOGI("q6voice PCM devices were closed.");
++}
+-- 
+2.40.1
+

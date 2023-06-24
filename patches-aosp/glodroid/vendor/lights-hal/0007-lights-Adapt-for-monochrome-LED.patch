@@ -1,0 +1,31 @@
+From 33304bb0f74315d98d5c5cd882b21b93b751913e Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 24 Jun 2023 12:30:18 +0200
+Subject: [PATCH 7/7] lights: Adapt for monochrome LED
+
+Just use full brightness if color is not zero.
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ Lights.cpp | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/Lights.cpp b/Lights.cpp
+index 5c84018..43b715f 100644
+--- a/Lights.cpp
++++ b/Lights.cpp
+@@ -144,7 +144,10 @@ ndk::ScopedAStatus Led::setLightState(const HwLightState &state) const
+ 
+     LOG(DEBUG) << "Setting global led to max brightness " << maxBrightness;
+     if (auto stream = std::ofstream(path + "/brightness")) {
+-        stream << maxBrightness;
++        if (state.color == 0)
++            stream << 0;
++        else
++            stream << maxBrightness;
+     } else {
+         LOG(ERROR) << "Failed to write `brightness` to " << path;
+         return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+-- 
+2.40.1
+

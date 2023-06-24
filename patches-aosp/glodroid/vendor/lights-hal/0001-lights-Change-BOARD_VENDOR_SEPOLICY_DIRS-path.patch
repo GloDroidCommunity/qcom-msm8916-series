@@ -1,0 +1,25 @@
+From a56246dda893688faa004b32d7f6e46deb77b376 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Fri, 23 Jun 2023 10:40:01 +0200
+Subject: [PATCH 1/7] lights: Change BOARD_VENDOR_SEPOLICY_DIRS path
+
+Adapt path for glodroid/vendor/lights-hal/
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ lights.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lights.mk b/lights.mk
+index 9d210e3..736ae53 100644
+--- a/lights.mk
++++ b/lights.mk
+@@ -2,4 +2,4 @@ PRODUCT_PACKAGES += \
+ 	android.hardware.lights-service
+ 
+ # TODO: LOCAL_PATH doesn't work here
+-BOARD_VENDOR_SEPOLICY_DIRS += device/mainline/common/lights/sepolicy
++BOARD_VENDOR_SEPOLICY_DIRS += glodroid/vendor/lights-hal/sepolicy
+-- 
+2.40.1
+

@@ -1,0 +1,28 @@
+From 78a03676567ea3419f5007c628f952fee679ef72 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 3 Jun 2023 11:00:46 +0200
+Subject: [PATCH 11/12] modem: Kickstart modem on qcom-msm8916
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ common/modem/modem_manager.rc | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/common/modem/modem_manager.rc b/common/modem/modem_manager.rc
+index 27f8e72..7d4e837 100644
+--- a/common/modem/modem_manager.rc
++++ b/common/modem/modem_manager.rc
+@@ -4,6 +4,10 @@
+ #
+ # Copyright (C) 2022 Roman Stratiienko (r.stratiienko@gmail.com)
+ 
++# Kickstart modem again once firmware is available
++on late-fs
++    write /sys/class/remoteproc/remoteproc0/state start
++
+ service uim-selection /vendor/bin/msm-modem-uim-selection.sh
+     user root
+     group root
+-- 
+2.40.1
+

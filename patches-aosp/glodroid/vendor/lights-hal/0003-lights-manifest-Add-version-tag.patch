@@ -1,0 +1,27 @@
+From bd10293d542f748d7f2d0070ab0a29701fd6de80 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Fri, 23 Jun 2023 12:15:05 +0200
+Subject: [PATCH 3/7] lights: manifest: Add version tag
+
+Add version 2 tag to not fail compatibility matrix test.
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ android.hardware.lights.xml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/android.hardware.lights.xml b/android.hardware.lights.xml
+index db604d6..abdd74e 100644
+--- a/android.hardware.lights.xml
++++ b/android.hardware.lights.xml
+@@ -1,6 +1,7 @@
+ <manifest version="1.0" type="device">
+     <hal format="aidl">
+         <name>android.hardware.light</name>
++        <version>2</version>
+         <fqname>ILights/default</fqname>
+     </hal>
+ </manifest>
+-- 
+2.40.1
+

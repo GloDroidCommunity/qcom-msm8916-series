@@ -1,0 +1,26 @@
+From 42ef6738ce59ef13a09deb2da68f059627899438 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 24 Jun 2023 17:42:22 +0200
+Subject: [PATCH] ANDROID: Don't use -Wno-error cflag
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ Android.bp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Android.bp b/Android.bp
+index bfbb7e0..4ff7a61 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -6,7 +6,7 @@ cc_library {
+         "lib/qrtr.c",
+         "lib/qmi.c",
+     ],
+-    cflags: ["-fPIC", "-Wno-error"],
++    cflags: ["-fPIC"],
+     export_include_dirs: ["lib"],
+     local_include_dirs: ["src"],
+ }
+-- 
+2.40.1
+

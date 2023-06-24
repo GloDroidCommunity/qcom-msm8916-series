@@ -1,0 +1,28 @@
+From 2b9eb75bc014ed1675eeee37ae65de438a54b47f Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 3 Jun 2023 11:57:53 +0200
+Subject: [PATCH 12/12] wifi: Kickstart wifi on qcom-msm8916
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ common/wifi/init.wifi.rc | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/common/wifi/init.wifi.rc b/common/wifi/init.wifi.rc
+index d0c277e..b11c9ee 100644
+--- a/common/wifi/init.wifi.rc
++++ b/common/wifi/init.wifi.rc
+@@ -12,6 +12,10 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
++# Kickstart wifi again once firmware is available
++on late-fs
++    write /sys/class/remoteproc/remoteproc1/state start
++
+ on zygote-start
+     # Create the directories used by the Wireless subsystem
+     mkdir /data/vendor/wifi 0771 wifi wifi
+-- 
+2.40.1
+

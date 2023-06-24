@@ -1,0 +1,38 @@
+From 54bc1cbf813294805dc3468941c8adb9b69ee6a0 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Fri, 23 Jun 2023 11:09:23 +0200
+Subject: [PATCH 4/7] lights: Also process non multi_index & non
+ multi_intensity LEDs
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ Lights.cpp | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/Lights.cpp b/Lights.cpp
+index 28316ef..d99c5dc 100644
+--- a/Lights.cpp
++++ b/Lights.cpp
+@@ -102,8 +102,7 @@ Led *Led::createLed(HwLight hwLight, std::string path)
+             return nullptr;
+         }
+     } else {
+-        LOG(ERROR) << "Failed to read `multi_index` for " << path;
+-        return nullptr;
++        LOG(INFO) << "Non multi_index'ed LED found at " << path;
+     }
+ 
+     LOG(INFO) << "Creating led " << path << " with max brightness " << maxBrightness;
+@@ -140,8 +139,7 @@ ndk::ScopedAStatus Led::setLightState(const HwLightState &state) const
+         auto b = state.color & 0xff;
+         stream << r << " " << g << " " << b;
+     } else {
+-        LOG(ERROR) << "Failed to write `multi_intensity` to " << path;
+-        return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
++        LOG(DEBUG) << "Not a `multi_intensity` LED at " << path;
+     }
+ 
+     LOG(DEBUG) << "Setting global led to max brightness " << maxBrightness;
+-- 
+2.40.1
+

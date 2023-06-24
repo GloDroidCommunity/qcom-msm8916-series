@@ -1,0 +1,29 @@
+From 338824b0fc387275a15a8d55eb4b855e8a11eaa9 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 24 Jun 2023 11:06:36 +0200
+Subject: [PATCH 6/7] BACKPORT: Rename Light HAL default implementation
+ variable
+
+https://android-review.googlesource.com/c/platform/hardware/interfaces/+/2199722
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ Lights.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Lights.h b/Lights.h
+index ecba41a..d8f0a28 100644
+--- a/Lights.h
++++ b/Lights.h
+@@ -52,7 +52,7 @@ struct Led : public Light {
+ 
+ class Lights : public BnLights {
+     ndk::ScopedAStatus setLightState(int id, const HwLightState &state) override;
+-    ndk::ScopedAStatus getLights(std::vector<HwLight> *types) override;
++    ndk::ScopedAStatus getLights(std::vector<HwLight> *lights) override;
+ 
+     std::vector<std::unique_ptr<Light>> lights;
+ 
+-- 
+2.40.1
+
