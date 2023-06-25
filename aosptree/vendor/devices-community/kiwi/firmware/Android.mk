@@ -1,4 +1,4 @@
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := kiwi_firmware
@@ -50,6 +50,7 @@ LOCAL_POST_INSTALL_CMD += \
 
 # Symlink non-splitted venus fimware for backward compatibility
 LOCAL_POST_INSTALL_CMD += \
-    ln -sf /vendor/firmware/qcom/venus-1.8/venus.mbn $(TARGET_OUT_VENDOR)/firmware/qcom/venus-1.8/venus.mdt;
+    mkdir -p $(TARGET_OUT_VENDOR)/firmware/qcom/venus-1.8/ ; \
+    ln -sf venus.mbn $(TARGET_OUT_VENDOR)/firmware/qcom/venus-1.8/venus.mdt;
 
 include $(BUILD_PHONY_PACKAGE)
