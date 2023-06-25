@@ -5,7 +5,9 @@
 $(call inherit-product, glodroid/configuration/common/device-common.mk)
 
 GD_NO_DEFAULT_FASTBOOTD := true
-GD_NO_DEFAULT_BOOTCTL := true
+GD_NO_DEFAULT_BOOTCTL   := true
+GD_NO_DEFAULT_CAMERA    := true
+GD_NO_DEFAULT_MODEM     := true
 
 # Files from linux-firmware
 PRODUCT_COPY_FILES += \
@@ -25,12 +27,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/audio.kiwi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio.kiwi.xml \
 
 # Lights HAL
-#PRODUCT_PACKAGES += \
-#    android.hardware.lights-service-kiwi \
-
-# Vibrator HAL
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.1-service.ff \
+    android.hardware.lights-service \
 
 # Sensors HAL
 PRODUCT_PACKAGES += \
@@ -47,9 +45,6 @@ PRODUCT_VENDOR_PROPERTIES += \
 # RRO that disables round items in quicksetting menu to increase performance
 PRODUCT_PACKAGES += \
     SystemUISlowGpu
-
-PRODUCT_PACKAGES += \
-    call-audio \
 
 # Bluetooth
 PRODUCT_VENDOR_PROPERTIES += \

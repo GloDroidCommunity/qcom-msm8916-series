@@ -31,7 +31,4 @@ PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_BUILD_SYSTEM_OTHER_IMAGE := false
 
 GD_LCD_DENSITY := 400
-
-#GD_NO_DEFAULT_APPS := true
-GD_NO_DEFAULT_CAMERA := true
-GD_NO_DEFAULT_MODEM := true
+GD_AUDIOPOLICY_FILE := vendor/devices-community/kiwi/etc/audio_policy_configuration.xml

@@ -29,9 +29,3 @@ BOARD_VENDORIMAGE_PARTITION_SIZE   := $(shell echo $$(( 256 * 1024 * 1024 )))
 
 # Boot image 63 MiB (keep 1 MiB for lk2nd)
 BOARD_BOOTIMAGE_PARTITION_SIZE := $(shell echo $$(( 63 * 1024 * 1024 )))
-
-BOARD_BUILD_AOSPEXT_LIBCAMERA := false
-GD_NO_DEFAULT_CAMERA := true
-
-GD_NO_DEFAULT_MODEM := true
-
