@@ -1,7 +1,7 @@
-From 226959417a28d722872c853fcce2a7f179910fc0 Mon Sep 17 00:00:00 2001
+From 6c4bbdd5c926186a2406b76d3f85055baae552a9 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 27 May 2023 10:46:06 +0200
-Subject: [PATCH 04/12] kernel: Use Image.gz and append DTB for qcom-msm8916
+Subject: [PATCH 04/13] kernel: Use Image.gz and append DTB for qcom-msm8916
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---

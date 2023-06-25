@@ -1,7 +1,7 @@
-From 0e8d135ddca6329b8f1b01aad11a44bd991f87ec Mon Sep 17 00:00:00 2001
+From e05a5e2e86c862718b0003208079500281c3a655 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 27 May 2023 09:10:15 +0200
-Subject: [PATCH 02/12] Adapt fstab for qcom-msm8916 devices
+Subject: [PATCH 02/13] Adapt fstab for qcom-msm8916 devices
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---

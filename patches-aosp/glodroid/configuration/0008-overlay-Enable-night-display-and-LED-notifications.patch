@@ -1,7 +1,7 @@
-From 08cc25fc0f82ca39823f9c07db9e2a54f35f146c Mon Sep 17 00:00:00 2001
+From 34d66d0877600b4a7dcc8d09c5a4429dfa7b464e Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Mon, 29 May 2023 17:57:06 +0200
-Subject: [PATCH 08/12] overlay: Enable night display and LED notifications
+Subject: [PATCH 08/13] overlay: Enable night display and LED notifications
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---

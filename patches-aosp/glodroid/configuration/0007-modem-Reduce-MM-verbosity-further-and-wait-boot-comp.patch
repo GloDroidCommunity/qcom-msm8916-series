@@ -1,7 +1,7 @@
-From db55b95fd0139bf91d499df8e0a7d5f3512872fb Mon Sep 17 00:00:00 2001
+From 592c64c6c9cadd1925417a524bf8fa40781a0839 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Mon, 29 May 2023 15:21:28 +0200
-Subject: [PATCH 07/12] modem: Reduce MM verbosity further, and wait boot
+Subject: [PATCH 07/13] modem: Reduce MM verbosity further, and wait boot
  completion
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>

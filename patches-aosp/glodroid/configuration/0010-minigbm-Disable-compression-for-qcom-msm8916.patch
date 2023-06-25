@@ -1,7 +1,7 @@
-From 57461097b337d7c41f0387ec6f631f1597dfadc9 Mon Sep 17 00:00:00 2001
+From a011148bb9e6234b7590d880f1af3ea2bebccb55 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 3 Jun 2023 10:54:01 +0200
-Subject: [PATCH 10/12] minigbm: Disable compression for qcom-msm8916
+Subject: [PATCH 10/13] minigbm: Disable compression for qcom-msm8916
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
