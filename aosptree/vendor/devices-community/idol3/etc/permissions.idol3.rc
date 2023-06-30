@@ -1,0 +1,6 @@
+on early-init
+    chown system system /sys/class/leds/led@1/brightness
+    chmod 0660 /sys/class/leds/led@1/brightness
+    chown system system /sys/class/leds/led@1/trigger
+    chmod 0660 /sys/class/leds/led@1/trigger
+

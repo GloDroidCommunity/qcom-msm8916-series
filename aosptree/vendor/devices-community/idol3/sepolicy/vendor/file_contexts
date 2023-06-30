@@ -1,0 +1,24 @@
+/vendor/bin/hw/android\.hardware\.lights-service                                        u:object_r:hal_light_default_exec:s0
+
+/dev/block/platform/soc@0/7824900\.mmc/by-name/fsc                                      u:object_r:modem_block_device:s0
+/dev/block/platform/soc@0/7824900\.mmc/by-name/fsg                                      u:object_r:modem_block_device:s0
+/dev/block/platform/soc@0/7824900\.mmc/by-name/modemst[12]                              u:object_r:modem_block_device:s0
+/dev/block/platform/soc@0/7824900\.mmc/by-name/modem_tunning                            u:object_r:modem_block_device:s0
+
+/dev/qcom_rmtfs_mem1                                                                    u:object_r:rmtfs_device:s0
+
+/sys/bus/platform/drivers/qcom-q6v5-mss                                                 u:object_r:sysfs_mss:s0
+/sys/devices/platform/86681000\.memory/rmtfs                                            u:object_r:sysfs_rmtfs:s0
+/sys/devices/platform/soc@0/a204000\.remoteproc                                         u:object_r:sysfs_remoteproc:s0
+/sys/devices/platform/soc@0/4080000\.remoteproc                                         u:object_r:sysfs_remoteproc:s0
+
+/data/vendor/tmp(/.*)?                                                                  u:object_r:tqftpserv_vendor_data_file:s0
+/data/vendor/readwrite(/.*)?                                                            u:object_r:tqftpserv_vendor_data_file:s0
+/data/vendor/readonly(/.*)?                                                             u:object_r:tqftpserv_vendor_data_file:s0
+
+/vendor/bin/qrtr-cfg                                                                    u:object_r:qrtr_exec:s0
+/vendor/bin/qrtr-ns                                                                     u:object_r:qrtr_exec:s0
+/vendor/bin/rmtfs                                                                       u:object_r:rmtfs_exec:s0
+/vendor/bin/tqftpserv                                                                   u:object_r:tqftpserv_exec:s0
+/vendor/bin/msm-modem-uim-selection\.sh                                                 u:object_r:hal_radio_default_exec:s0
+

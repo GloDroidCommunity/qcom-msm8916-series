@@ -1,0 +1,15 @@
+on early-init
+    setprop ro.hardware.sensors iio
+    # magnetometer and gyro have no IRQ and therefore no trigger
+    setprop ro.iio.magn.quirks no-trig
+    setprop ro.iio.anglvel.quirks no-trig
+    # proximity sensor doesn't report distance in cm
+    setprop ro.iio.proximity.quirks binarize
+    setprop ro.iio.prox.tsl2772.nearlevel 150
+
+    setprop ro.iio.magn.ak09911.name "AK09911 Magnetometer"
+    setprop ro.iio.anglvel.bmg160.name "BMG160 Gyroscope"
+    setprop ro.iio.temp.bmg160.name "BMG160 Thermometer"
+    setprop ro.iio.accel.kxtj21009.name "KXTJ21009 Accelerometer"
+    setprop ro.iio.illuminance.tsl2772.name "TSL2772 ALS"
+    setprop ro.iio.prox.tsl2772.name "TSL2772 Proximity"
