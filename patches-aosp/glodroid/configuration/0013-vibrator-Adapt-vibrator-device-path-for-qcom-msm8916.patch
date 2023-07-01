@@ -1,7 +1,7 @@
-From 49b746cd0dad376ae7865e2fee91d17859141b80 Mon Sep 17 00:00:00 2001
+From ff609f3259d5d753382d7b5472b78ba6778ff861 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 24 Jun 2023 16:18:45 +0200
-Subject: [PATCH 13/13] vibrator: Adapt vibrator device path for qcom-msm8916
+Subject: [PATCH 13/14] vibrator: Adapt vibrator device path for qcom-msm8916
 
 The PM8916 vibrator device commonly found with MSM8916 is at
 /sys/devices/platform/soc@0/200f000.spmi/spmi-0/0-01/200f000.spmi:pmic@1:vibrator@c000/input

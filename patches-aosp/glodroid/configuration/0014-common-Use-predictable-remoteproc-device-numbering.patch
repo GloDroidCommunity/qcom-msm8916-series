@@ -1,0 +1,43 @@
+From c5a5691d8fe9b776604b52f2996f36d7718cd44a Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 1 Jul 2023 11:57:26 +0200
+Subject: [PATCH 14/14] common: Use predictable remoteproc device numbering
+
+After setting msm8916/msm8939 dtsi to use remoteproc aliases,
+change rc files to use them.
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ common/modem/modem_manager.rc | 2 +-
+ common/wifi/init.wifi.rc      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/common/modem/modem_manager.rc b/common/modem/modem_manager.rc
+index 7d4e837..5d11dd8 100644
+--- a/common/modem/modem_manager.rc
++++ b/common/modem/modem_manager.rc
+@@ -6,7 +6,7 @@
+ 
+ # Kickstart modem again once firmware is available
+ on late-fs
+-    write /sys/class/remoteproc/remoteproc0/state start
++    write /sys/class/remoteproc/remoteproc1/state start
+ 
+ service uim-selection /vendor/bin/msm-modem-uim-selection.sh
+     user root
+diff --git a/common/wifi/init.wifi.rc b/common/wifi/init.wifi.rc
+index b11c9ee..67a0370 100644
+--- a/common/wifi/init.wifi.rc
++++ b/common/wifi/init.wifi.rc
+@@ -14,7 +14,7 @@
+ 
+ # Kickstart wifi again once firmware is available
+ on late-fs
+-    write /sys/class/remoteproc/remoteproc1/state start
++    write /sys/class/remoteproc/remoteproc0/state start
+ 
+ on zygote-start
+     # Create the directories used by the Wireless subsystem
+-- 
+2.40.1
+

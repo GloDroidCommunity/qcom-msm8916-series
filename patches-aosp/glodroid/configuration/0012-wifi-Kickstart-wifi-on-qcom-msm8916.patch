@@ -1,7 +1,7 @@
-From f7d0fc38931b722caeef7e41754ee99a99566556 Mon Sep 17 00:00:00 2001
+From 26d596ffacd6bb9493c4c2547441ab180830a0cc Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 3 Jun 2023 11:57:53 +0200
-Subject: [PATCH 12/13] wifi: Kickstart wifi on qcom-msm8916
+Subject: [PATCH 12/14] wifi: Kickstart wifi on qcom-msm8916
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---

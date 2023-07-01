@@ -1,7 +1,7 @@
-From d8b32131a31b0a0ad257ab6065ac3ad767069697 Mon Sep 17 00:00:00 2001
+From 936ba6be6034b0048c05a0f52d315f19b8cd9584 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 27 May 2023 20:23:37 +0200
-Subject: [PATCH 06/13] kernel: Copy modules to vendor instead of vendor_dlkm
+Subject: [PATCH 06/14] kernel: Copy modules to vendor instead of vendor_dlkm
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---

@@ -1,7 +1,7 @@
-From 9dee98f2c0d1fdc54b45a5257b1f56e67332ebc4 Mon Sep 17 00:00:00 2001
+From c97eb86bb5b4cd94e5e5164b67704cc2c4eb6e73 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 27 May 2023 11:54:20 +0200
-Subject: [PATCH 05/13] common: Adapt base board.mk for qcom-msm8916
+Subject: [PATCH 05/14] common: Adapt base board.mk for qcom-msm8916
 
 Disable much of the settings in this file, mainly:
 - AVB
