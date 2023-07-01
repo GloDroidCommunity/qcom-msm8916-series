@@ -1,0 +1,29 @@
+From cced770ee8704d580cdbe27b19e7feeec752ed20 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Sat, 1 Jul 2023 11:51:04 +0200
+Subject: [PATCH 1/2] arm64: dts: qcom: msm8916: Set remoteproc aliases
+
+Set aliases for remoteproc devices to allow for predictable paths.
+Use remoteproc0 for Wi-Fi/BT and remoteproc1 for modem.
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index a68da1f70..65b676b25 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -23,6 +23,8 @@ / {
+ 	aliases {
+ 		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
+ 		mmc1 = &sdhc_2; /* SDC2 SD card slot */
++		remoteproc0 = &pronto;
++		remoteproc1 = &mpss;
+ 	};
+ 
+ 	chosen { };
+-- 
+2.40.1
+
