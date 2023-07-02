@@ -8,6 +8,7 @@ GD_NO_DEFAULT_FASTBOOTD := true
 GD_NO_DEFAULT_BOOTCTL   := true
 GD_NO_DEFAULT_CAMERA    := true
 GD_NO_DEFAULT_MODEM     := true
+GD_NO_DEFAULT_APPS      := true
 
 # Files from linux-firmware
 PRODUCT_COPY_FILES += \
