@@ -4,9 +4,10 @@ LOCAL_PATH=$(pwd)
 
 echo Init repo tree using AOSP manifest
 pushd aosptree
-repo init -u https://github.com/LineageOS/android.git -b 757f405bf66c7d0ece0a1a5ccd474d0b543a10ad
+repo init -u https://github.com/LineageOS/android.git -b refs/heads/lineage-20.0
 cd .repo/manifests
-mv default.xml lineage.xml
+rm default.xml
+cp ${LOCAL_PATH}/manifests/lineage-static.xml lineage.xml
 cp ${LOCAL_PATH}/manifests/glodroid.xml glodroid.xml
 cp ${LOCAL_PATH}/manifests/default_lineage.xml default.xml
 git add *
