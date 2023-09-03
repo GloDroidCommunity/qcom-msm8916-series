@@ -1,5 +1,6 @@
 <audiohal>
     <mixer name="alcatelidol3">
+        <!-- UCM : https://github.com/msm8916-mainline/alsa-ucm-conf/blob/master/ucm2/alcatel-idol3/HiFi.conf -->
         <init>
             <!-- from platforms/msm8916/qdsp6.conf & qdsp6-components.conf, for idol3 -->
             <ctl name="SEC_MI2S_RX Audio Mixer MultiMedia1" val="1" />
@@ -17,7 +18,6 @@
 
     <device name="speaker">
         <path name="on">
-            <!-- from idol3 UCM -->
             <ctl name="Speaker Top Amp Input" val="Left" />
             <ctl name="Speaker Bottom Amp Input" val="Right" />
             <ctl name="Speaker Top Mode" val="Speaker" />
@@ -33,7 +33,6 @@
 
     <device name="earpiece">
         <path name="on">
-            <!-- from idol3 UCM -->
             <ctl name="Speaker Top Amp Input" val="Left" />
             <ctl name="Speaker Top Mode" val="Receiver" />
             <ctl name="Speaker Top Switch" val="1" />
@@ -44,9 +43,8 @@
         </path>
     </device>
 
-    <device name="headphone">
+    <device name="headphone" cardname="alcatelidol3" device="0">
         <path name="on">
-            <!-- from idol3 UCM -->
             <ctl name="HPL Mixer LDACL Switch" val="1" />
             <ctl name="HPR Mixer RDACR Switch" val="1" />
         </path>
@@ -56,31 +54,29 @@
         </path>
     </device>
 
-    <device name="mic">
-       <!-- from ucm2/codecs/msm8916-wcd/PrimaryMic.conf -->
-       <!-- workaround mic not being enabled on calls by letting it on
+    <device name="headset" cardname="alcatelidol3" device="0">
         <path name="on">
-            <ctl name="DEC1 MUX" val="ADC1" />
-            <ctl name="CIC1 MUX" val="AMIC" />
-            <ctl name="ADC1 Volume" val="8" />
+            <ctl name="HPL Mixer LDACL Switch" val="1" />
+            <ctl name="HPR Mixer RDACR Switch" val="1" />
         </path>
         <path name="off">
-            <ctl name="DEC1 MUX" val="ZERO" />
-            <ctl name="ADC1 Volume" val="0" />
+            <ctl name="HPL Mixer LDACL Switch" val="0" />
+            <ctl name="HPR Mixer RDACR Switch" val="0" />
         </path>
-        -->
     </device>
+
+    <device name="mic" />
 
     <!-- required for receiving AUDIO_MODE_IN_CALL events in adev_set_mode() -->
     <device name="voice" />
 
-    <!-- idol3 headphones, PlaybackPCM "hw:${CardId},0" -->
+    <!-- headphone/headset, PlaybackPCM "hw:${CardId},0" -->
     <stream type="pcm" dir="out" cardname="alcatelidol3" device="0" />
 
-    <!-- idol3 speakers, PlaybackPCM "hw:${CardId},2" -->
-    <stream type="pcm" dir="out" cardname="alcatelidol3" device="2" />
-
-    <!-- idol3 microphone, WcdCapturePCM "hw:${CardId},1" -->
+    <!-- microphone, WcdCapturePCM "hw:${CardId},1" -->
     <stream type="pcm" dir="in" cardname="alcatelidol3" device="1" />
+
+    <!-- speakers/earpiece, PlaybackPCM "hw:${CardId},2" -->
+    <stream type="pcm" dir="out" cardname="alcatelidol3" device="2" />
 
 </audiohal>
