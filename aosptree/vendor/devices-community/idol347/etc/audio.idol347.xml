@@ -71,7 +71,7 @@
     <device name="voice" />
 
     <!-- headphone/headset, PlaybackPCM "hw:${CardId},0" -->
-    <stream type="pcm" dir="out" cardname="alcatelidol3" device="0" />
+    <!-- <stream type="pcm" dir="out" cardname="alcatelidol3" device="0" /> -->
 
     <!-- microphone, WcdCapturePCM "hw:${CardId},1" -->
     <stream type="pcm" dir="in" cardname="alcatelidol3" device="1" />
