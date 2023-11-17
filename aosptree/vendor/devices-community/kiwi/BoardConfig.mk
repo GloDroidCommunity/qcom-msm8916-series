@@ -15,9 +15,9 @@ KERNEL_FRAGMENTS := $(BOARD_KERNEL_SRC_DIR)/kernel/configs/android.config \
 		    $(BOARD_KERNEL_SRC_DIR)/kernel/configs/aosp.config \
 		    $(BOARD_KERNEL_SRC_DIR)/kernel/configs/devices.config \
 
-# User image 11079 MiB
+# User image 10957 MiB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_USERDATAIMAGE_PARTITION_SIZE := $(shell echo $$(( 11079 * 1024 * 1024 )))
+BOARD_USERDATAIMAGE_PARTITION_SIZE := $(shell echo $$(( 10957 * 1024 * 1024 )))
 
 # System image 2560 MiB
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
