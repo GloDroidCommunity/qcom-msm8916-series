@@ -69,10 +69,7 @@
   <project path="glodroid/vendor/vibrator-ff"     remote="aospm"       name="external_vibrator-ff"              group="glodroid"  revision="main" />
 
   <!-- kernel/firmware components (platform) -->
-  <!--
-  <project path="glodroid/kernel/msm8916-mainline" remote="vknecht"        name="msm8916-mainline-linux.git" groups="glodroid" revision="refs/heads/aosp/v6.4-rc3-msm8916" clone-depth="1" />
-  -->
-  <project path="glodroid/kernel/msm8916-mainline" remote="vknecht"        name="msm8916-mainline-linux.git" groups="glodroid" revision="refs/heads/aosp/v6.2-msm8916" clone-depth="1" />
+  <project path="glodroid/kernel/msm8916-mainline" remote="vknecht"        name="msm8916-mainline-linux.git" groups="glodroid" revision="refs/heads/aosp/v6.6-msm8916" clone-depth="1" />
   <project path="glodroid/linux-firmware"          remote="linux-firmware" name="linux-firmware.git"         groups="glodroid" revision="fc90c59beebd551dde5fe5eb3e76d36651ba08fb" clone-depth="1" />
 
   <!-- compilers for platform components -->

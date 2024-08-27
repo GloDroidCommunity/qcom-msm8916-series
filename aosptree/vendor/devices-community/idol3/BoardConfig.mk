@@ -13,7 +13,6 @@ BOARD_MESA3D_GALLIUM_DRIVERS := freedreno
 KERNEL_DEFCONFIG := $(BOARD_KERNEL_SRC_DIR)/arch/arm64/configs/msm8916_defconfig
 KERNEL_FRAGMENTS := $(BOARD_KERNEL_SRC_DIR)/kernel/configs/android.config \
 		    $(BOARD_KERNEL_SRC_DIR)/kernel/configs/aosp.config \
-		    $(BOARD_KERNEL_SRC_DIR)/kernel/configs/devices.config \
 
 # User image 26526 MiB (for 32GB variant)
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
