@@ -1,7 +1,7 @@
-From 753ee0b80cfd4dd2e8d733437d0ffb8bb8a0f97c Mon Sep 17 00:00:00 2001
+From c7a779217a941ef1bed11e28732694d1ba084776 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 27 May 2023 09:10:15 +0200
-Subject: [PATCH 02/14] Adapt fstab for qcom-msm8916 devices
+Subject: [PATCH 02/15] Adapt fstab for qcom-msm8916 devices
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
@@ -38,5 +38,5 @@ index a514344..518429d 100644
 +/devices/platform/soc@0/7864900.mmc/mmc_host/mmc*       auto                 auto    defaults     voldmanaged=sdcard1:auto
 +#endif
 -- 
-2.40.1
+2.46.0
 

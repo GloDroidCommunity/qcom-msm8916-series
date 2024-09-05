@@ -1,7 +1,7 @@
-From c97eb86bb5b4cd94e5e5164b67704cc2c4eb6e73 Mon Sep 17 00:00:00 2001
+From 1b67cb34022c886af6e7e0ab8c0dace5306d2ee2 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 27 May 2023 11:54:20 +0200
-Subject: [PATCH 05/14] common: Adapt base board.mk for qcom-msm8916
+Subject: [PATCH 05/15] common: Adapt base board.mk for qcom-msm8916
 
 Disable much of the settings in this file, mainly:
 - AVB
@@ -83,5 +83,5 @@ index b73abe5..878f330 100644
  DEX_PREOPT_DEFAULT := nostripping
  WITH_DEXPREOPT := true
 -- 
-2.40.1
+2.46.0
 

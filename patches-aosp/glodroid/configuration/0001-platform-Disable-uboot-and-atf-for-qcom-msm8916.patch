@@ -1,7 +1,7 @@
-From 80f84f16f5b1adc0c684cb4c96049f978a1bef17 Mon Sep 17 00:00:00 2001
+From c34f00a58159ad79bd95b7639107a59b115cfe38 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Fri, 26 May 2023 15:18:49 +0200
-Subject: [PATCH 01/14] platform: Disable uboot and atf for qcom-msm8916
+Subject: [PATCH 01/15] platform: Disable uboot and atf for qcom-msm8916
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
@@ -27,5 +27,5 @@ index e323ecf..f1b6a20 100644
  ifeq ($(PRODUCT_BOARD_PLATFORM),sunxi)
  ifneq ($(CRUST_FIRMWARE_DEFCONFIG),)
 -- 
-2.40.1
+2.46.0
 

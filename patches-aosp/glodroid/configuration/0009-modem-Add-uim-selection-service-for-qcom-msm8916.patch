@@ -1,7 +1,7 @@
-From ba02c8ecc990e2a0e61cc3e9f3b140bda12f076b Mon Sep 17 00:00:00 2001
+From f19db31d83c3352043d85d592ed45fd687c6a3e1 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Fri, 2 Jun 2023 12:44:19 +0200
-Subject: [PATCH 09/14] modem: Add uim-selection service for qcom-msm8916
+Subject: [PATCH 09/15] modem: Add uim-selection service for qcom-msm8916
 
 This helps with selection correct slot and AID for usim application
 especially with dual-sim devices.
@@ -144,5 +144,5 @@ index 0000000..963948f
 +ret=$?
 +exit $ret
 -- 
-2.40.1
+2.46.0
 

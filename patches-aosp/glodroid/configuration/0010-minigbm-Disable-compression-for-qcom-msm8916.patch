@@ -1,7 +1,7 @@
-From 244f75082a9ea609426a6b4924f10330d1ed4cc9 Mon Sep 17 00:00:00 2001
+From 49aa8889af84cead951cdb737ad7229c8d73dea9 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 3 Jun 2023 10:54:01 +0200
-Subject: [PATCH 10/14] minigbm: Disable compression for qcom-msm8916
+Subject: [PATCH 10/15] minigbm: Disable compression for qcom-msm8916
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
@@ -24,5 +24,5 @@ index 34a6e69..25bc13e 100644
      interface android.hardware.graphics.allocator@4.0::IAllocator default
      class hal animation
 -- 
-2.40.1
+2.46.0
 

@@ -1,7 +1,7 @@
-From 859e8d6712bb969330c214953d913fcf04b16512 Mon Sep 17 00:00:00 2001
+From 097166dab572060d33b4b1bc6912366be9167949 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Mon, 29 May 2023 17:57:06 +0200
-Subject: [PATCH 08/14] overlay: Enable night display and LED notifications
+Subject: [PATCH 08/15] overlay: Enable night display and LED notifications
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
@@ -23,5 +23,5 @@ index 74a42da..5125af3 100644
 +
  </resources>
 -- 
-2.40.1
+2.46.0
 

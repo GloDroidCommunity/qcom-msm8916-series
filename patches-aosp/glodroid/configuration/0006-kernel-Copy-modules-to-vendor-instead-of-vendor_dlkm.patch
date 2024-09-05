@@ -1,7 +1,7 @@
-From 936ba6be6034b0048c05a0f52d315f19b8cd9584 Mon Sep 17 00:00:00 2001
+From 74bec0e53b87e46a4de9520093334715e7334172 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 27 May 2023 20:23:37 +0200
-Subject: [PATCH 06/14] kernel: Copy modules to vendor instead of vendor_dlkm
+Subject: [PATCH 06/15] kernel: Copy modules to vendor instead of vendor_dlkm
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
@@ -22,5 +22,5 @@ index b44808c..a1cb964 100644
  
  ANDROID_DTBO		:= $(PRODUCT_OUT)/obj/GLODROID/DTBO/fstab-android-sdcard.dtbo
 -- 
-2.40.1
+2.46.0
 

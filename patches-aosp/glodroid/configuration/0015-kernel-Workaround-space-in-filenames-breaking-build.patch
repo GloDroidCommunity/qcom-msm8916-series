@@ -1,0 +1,35 @@
+From 573488c976e618419b9eb3f3ebe521fae33beb56 Mon Sep 17 00:00:00 2001
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+Date: Thu, 5 Sep 2024 18:08:04 +0200
+Subject: [PATCH 15/15] kernel: Workaround space in filenames breaking build
+
+Since kernel 6.9, some filenames contain space characters,
+(eg. tools/testing/selftests/devices/boards/Dell Inc.,XPS 13 9300.yaml)
+breaking the build with:
+glodroid/configuration/platform/kernel/kernel.mk:41: error: real file "out/target/product/idol347/obj/GLODROID/KERNEL/install/kernel" depends on PHONY target "13"
+11:27:42 ckati failed with: exit status 1
+
+Apply Roman's suggested workaround, until a better solution is found.
+
+Suggested-by: Roman Stratiienko <r.stratiienko@gmail.com>
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ platform/kernel/kernel.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/platform/kernel/kernel.mk b/platform/kernel/kernel.mk
+index a1cb964..98cef70 100644
+--- a/platform/kernel/kernel.mk
++++ b/platform/kernel/kernel.mk
+@@ -28,7 +28,7 @@ KERNEL_OUT		:= $(PRODUCT_OUT)/obj/GLODROID/KERNEL
+ KERNEL_TARGET		:= $(KERNEL_OUT)/install/kernel
+ KERNEL_DTB_OUT		:= $(KERNEL_OUT)/install/dtbs
+ 
+-KERNEL_SRC_FILES        := $(sort $(shell find -L $(BOARD_KERNEL_SRC_DIR) -not -path '*/\.git/*'))
++KERNEL_SRC_FILES        := $(sort $(shell find -L $(BOARD_KERNEL_SRC_DIR) -not -path '* *' -not -path '*/\.git/*'))
+ KERNEL_PATCHES := $(if $(BOARD_KERNEL_PATCHES_DIRS),$(sort $(shell find -L $(BOARD_KERNEL_PATCHES_DIRS) -not -path '*/\.*')))
+ 
+ 
+-- 
+2.46.0
+

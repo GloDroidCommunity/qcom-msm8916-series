@@ -1,7 +1,7 @@
-From 7a0e6463e12c6773bc784f8c052ef112ff0dd3ca Mon Sep 17 00:00:00 2001
+From 0c67acafe0151b50a747c90582970e4e21f0a845 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sun, 28 May 2023 18:08:21 +0200
-Subject: [PATCH 03/14] Copy fstab also to ramdisk root
+Subject: [PATCH 03/15] Copy fstab also to ramdisk root
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
@@ -34,5 +34,5 @@ index 554b121..0a92070 100644
  
  include $(BUILD_EXECUTABLE)
 -- 
-2.40.1
+2.46.0
 

@@ -1,7 +1,7 @@
-From cd7c5a356845ffc16d97857775906e03ee6302f9 Mon Sep 17 00:00:00 2001
+From 10d5617d665bdcf80f483064c7eab19ba0db48f2 Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Mon, 29 May 2023 15:21:28 +0200
-Subject: [PATCH 07/14] modem: Reduce MM verbosity further, and wait boot
+Subject: [PATCH 07/15] modem: Reduce MM verbosity further, and wait boot
  completion
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
@@ -28,5 +28,5 @@ index bcf564e..3896d49 100644
      mkdir /mnt/var/run 0755 system system
      mkdir /mnt/var/run/dbus 0755 system system
 -- 
-2.40.1
+2.46.0
 

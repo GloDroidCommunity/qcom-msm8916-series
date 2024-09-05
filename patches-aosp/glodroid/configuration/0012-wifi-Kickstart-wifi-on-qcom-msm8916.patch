@@ -1,7 +1,7 @@
-From 26d596ffacd6bb9493c4c2547441ab180830a0cc Mon Sep 17 00:00:00 2001
+From 8c985bcc49490ac701c5eff1d815013a93a9031d Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 3 Jun 2023 11:57:53 +0200
-Subject: [PATCH 12/14] wifi: Kickstart wifi on qcom-msm8916
+Subject: [PATCH 12/15] wifi: Kickstart wifi on qcom-msm8916
 
 Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
@@ -24,5 +24,5 @@ index d0c277e..b11c9ee 100644
      # Create the directories used by the Wireless subsystem
      mkdir /data/vendor/wifi 0771 wifi wifi
 -- 
-2.40.1
+2.46.0
 

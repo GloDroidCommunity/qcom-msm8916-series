@@ -1,7 +1,7 @@
-From c5a5691d8fe9b776604b52f2996f36d7718cd44a Mon Sep 17 00:00:00 2001
+From 2f24204defe798be8998af044196151e918c141f Mon Sep 17 00:00:00 2001
 From: Vincent Knecht <vincent.knecht@mailoo.org>
 Date: Sat, 1 Jul 2023 11:57:26 +0200
-Subject: [PATCH 14/14] common: Use predictable remoteproc device numbering
+Subject: [PATCH 14/15] common: Use predictable remoteproc device numbering
 
 After setting msm8916/msm8939 dtsi to use remoteproc aliases,
 change rc files to use them.
@@ -39,5 +39,5 @@ index b11c9ee..67a0370 100644
  on zygote-start
      # Create the directories used by the Wireless subsystem
 -- 
-2.40.1
+2.46.0
 
